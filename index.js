@@ -3,7 +3,7 @@ function getFirstSelector(selector) {
 }
 
 function nestedTarget() {
-	return document.querySelector('div.target')
+	return document.querySelector('#nested .target')
 }
 
 function deepestChild() {
@@ -11,10 +11,13 @@ function deepestChild() {
 }
 
 function increaseRankBy(n) {
-	var numbers = document.getElementById('app').querySelectorAll('ul.ranked-list')
+	var numbers = document.getElementById('app').querySelectorAll('.ranked-list')
 	
 	for (let i = 0; i < numbers.length; i++) {
-		numbers[i].innerHTML = (i + n).toString()
+		let children = numbers[i].children
+
+		for (let j = 0; j < children.length; j++) {
+			children[j].innerHTML = parseInt(children[j].innerHTML) + n
+		}
 	}	
-	return numbers;
 }
